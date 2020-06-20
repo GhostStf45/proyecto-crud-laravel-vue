@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Entry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //get entry if user has already registered
+        $entries = Entry::where('user_id', auth()->id())->get();
+        return view('home', compact('entries'));
+    }
+    public function show(Request $request)
+    {
+        
+
     }
 }
