@@ -13,13 +13,22 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
                     {{$entry->content}}
+                    
                     @can('update', $entry) 
                         <hr>
                         <a href="{{url ('/entries/'.$entry->id.'/edit') }}" class="btn btn-primary">
                                 Edit entry
                         </a>
                     @endcan
+                    
+                </div>
+                <div class="card-footer">
+                    Author:
+                    <a href="{{url('@'.$entry->user->username)}}">
+                         {{$entry->user->name}}
+                    </a>
                 </div>
             
             </div>
