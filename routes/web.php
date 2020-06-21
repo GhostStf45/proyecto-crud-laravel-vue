@@ -26,7 +26,8 @@ Route::post('/entries', 'EntryController@store');
 Route::get('/entries/{entryBySlug}', 'GuestController@show');
 
 
-
+// Protect route with middleware in routes 
+// ->middleware('can:update.entry');
 Route::get('/entries/{entry}/edit', 'EntryController@edit');
 Route::put('/entries/{entry}', 'EntryController@update');
 

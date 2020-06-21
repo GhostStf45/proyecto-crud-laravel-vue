@@ -36,17 +36,19 @@ class EntryController extends Controller
     }
     public function edit(Entry $entry)
     {
-        dd('edit');
+        //if user has an authorization to update entry and throw 403 error because the user dont has authorization
+        $this->authorize('update', $entry);
         return view('entries.edit', compact('entry'));
     }
     public function update(Request $request, Entry $entry){
-        //   dd($request->all());
+        $this->authorize('update', $entry);
+        
        $validateData = $request->validate([
            'title' => 'required|min:7|max:255|unique:entries,id,'.$entry->id,
            'content' => 'required|min:25|max:3000'
 
         ]);
-        // TODO : allow edit action only for the author
+        // TODO: allow edit action only for the author
         // auth()->id == $entry->user_id
         $entry->title = $validateData['title'];
         $entry->content = $validateData['content'];
