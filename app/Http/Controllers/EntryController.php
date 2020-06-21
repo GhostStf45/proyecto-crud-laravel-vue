@@ -36,6 +36,7 @@ class EntryController extends Controller
     }
     public function edit(Entry $entry)
     {
+        dd('edit');
         return view('entries.edit', compact('entry'));
     }
     public function update(Request $request, Entry $entry){
